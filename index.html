@@ -140,22 +140,26 @@
    
 
 </head>
-<body id="bgColor" class="scrollspy blueBg">
+<body id="bgColor" class="scrollspy blueBg" style="margin-top:5%;">
 
     <div class="navbar">
-        <a href="index.html"><span class="material-symbols-outlined">smart_toy</span></a>
-        <a href="dolar.html"><span class="material-symbols-outlined">paid</span>
-        <!-- <a href="messages.html"><i class="material-icons">chat</i></a> -->
+        <a href="index.html" class="tooltipped" data-position="bottom" data-tooltip="Ahorrobot">
+            <span class="material-symbols-outlined">smart_toy</span>
+        </a>
+        <a href="dolar.html" class="tooltipped" data-position="bottom" data-tooltip="Dólar HOY">
+            <span class="material-symbols-outlined">paid</span>
+        </a>
+        <a href="#!" class="tooltipped" data-position="bottom" data-tooltip="Contacto">
+            <span class="material-symbols-outlined">mail</span>
+        </a>
     </div>
+
 
     
     <div class="row" style="margin-bottom:0px;margin-top:15px;">
         <div id="arrow" class="col s2 left" style="display:none" >
             <a href="/"><img src="img/arrow.svg" width="100%" style="max-width: 50px; padding: 10px; "></a>
         </div>
-        <div class="col s2 right">
-            <a href="mailto:hola@ahorrobot.com.ar?subject=Hola AhorroBot!"><img src="img/envelope.svg" width="100%" style="max-width: 50px; padding: 10px; margin-right: 20px; mar"></a>
-        </div>    
     </div>
     <div id="blueContent" class="container showhide" style="margin-top: -20px;">
         <!-- logo + dialog -->
@@ -165,7 +169,7 @@
         <div class="container">
             <form class="col s12">
                 <div class="input-field col s6">
-                    <span class="white-text">Monto total en un pago</span>
+                    <span class="white-text">Precio al contado</span>
                     <input style="background-color: white; border-radius: 10px; text-align:right;" placeholder="Ingresa el monto total en un pago " id="montoTotal" type="number" class="validate" style="text-align:right;" required>
                 </div>
             </form>
@@ -194,19 +198,21 @@
                         <span class="white-text">Inflación</span>
                         <div class="input-field" style="background-color: white; border-radius: 10px;">
                             <div style="width:90%">
-                                <input placeholder="7.4" value="7.4" id="inflacion" type="number" class="validate" style="text-align:right;"/>
+                                <input placeholder="4" value="4" id="inflacion" type="number" class="validate" style="text-align:right;"/>
                             </div>
                         </div>
                     </div>  
                     <div class="col s6 right" style="margin: 0px;">
                         <p class="white-text" style="margin:0px;text-align:right;margin-right:7%">
-                            <span style="font-size: 1em;">Inflación 7,4% (*)</span>
+                            <span style="font-size: 1em;">Inflación 4% (*)</span> 
                             <br>
                             <span style="opacity: 0.6; font-size: 0.8em;">mensual estimada</span>
                             <br>
-                            <span style="opacity: 0.6; font-size: 0.8em;">actualizada 08/2022</span>
+                            <span style="opacity: 0.6; font-size: 0.8em;">87% acumulada 2024</span>
                             <br>
-                            <span style="opacity: 0.6; font-size: 0.8em;"><a class="white-text" href="https://www.indec.gob.ar/uploads/informesdeprensa/ipc_08_222F36DA2F1A.pdf" target="_blank"><u>Fuente</u></a></span>
+                            <span style="opacity: 0.6; font-size: 0.8em;">actualizada 08/2024</span>
+                            <br>
+                            <span style="opacity: 0.6; font-size: 0.8em;"><a class="white-text" href="https://www.indec.gob.ar/uploads/informesdeprensa/ipc_08_24A32B39CB9C.pdf" target="_blank"><u>Fuente</u></a></span>
                         </p>
                     </div>
                 </div>
@@ -289,6 +295,10 @@
             (*) La inflación sugerida corresponde al promedio proyectado del Índice de Precios al Consumidor (IPC) a 6 meses publicado por Banco Central de la República Argentina (BCRA) en su último informe mensual del Relevamiento de Expectativas de Mercado (REM). 
             <br>
             Los meses subsiguientes son una proyección de ese mismo porcentaje.
+            <br>
+            Todas las cotizaciones, indices y cualquier otro valor publicadas en este sitio web son a fines informativos y tienen un carácter orientativo, por lo que deben ser tomados únicamente a modo de referencia.
+            <br>
+            En ningún caso se debe interpretar o suponer una recomendación de compra o venta.
         </p>
     </div>
 
@@ -309,6 +319,11 @@
             $('form').submit(function(e){
                 e.preventDefault();
             })
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.tooltipped');
+                var instances = M.Tooltip.init(elems);
+            });
         </script>
 
         <script type="text/javascript">

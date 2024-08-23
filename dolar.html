@@ -20,17 +20,23 @@ UPDATES
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body class="blueBg">
+<body class="blueBg" style="margin-top:5%;">
     <div class="navbar">
-        <a href="index.html"><span class="material-symbols-outlined">smart_toy</span></a>
-        <a href="dolar.html"><span class="material-symbols-outlined">paid</span>
-        <!-- <a href="messages.html"><i class="material-icons">chat</i></a> -->
+        <a href="index.html" class="tooltipped" data-position="bottom" data-tooltip="Ahorrobot">
+            <span class="material-symbols-outlined">smart_toy</span>
+        </a>
+        <a href="dolar.html" class="tooltipped" data-position="bottom" data-tooltip="Dólar HOY">
+            <span class="material-symbols-outlined">paid</span>
+        </a>
+        <a href="#!" class="tooltipped" data-position="bottom" data-tooltip="Contacto">
+            <span class="material-symbols-outlined">mail</span>
+        </a>
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <h2 class="center-align white-text">Blue / Oficial</h2>
+                <h2 class="center-align white-text">Cotización Dólar HOY</h2>
                 <p class="center-align white-text">Monitoreo en tiempo real de las cotizaciones del dólar en Argentina.</p>
             </div>
         </div>
@@ -86,7 +92,7 @@ UPDATES
             <div class="col s12">
                 <div class="swap-container">
                     <div class="input-field">
-                        <input id="input-amount" type="text" class="validate">
+                        <input style="margin: 0 10px;" id="input-amount" type="text" class="validate">
                         <label for="input-amount"><span id="currency-flag">🇺🇸 USD</span></label>
                     </div>
                     <div class="center-align">
@@ -95,13 +101,20 @@ UPDATES
                         </a>
                     </div>
                     <div class="input-field">
-                        <input id="converted-amount" type="text" class="validate" placeholder="$0" readonly>
+                        <input style="margin: 0 10px;" id="converted-amount" type="text" class="validate" placeholder="$0" readonly>
                         <label for="converted-amount"><span id="result-flag">🇦🇷 ARS</span></label>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!-- DISCLAIMER -->
+        <div class="container" style="margin-top: 10%;">
+            <p class="white-text" align="justify">
+                Todas las cotizaciones, indices y cualquier otro valor publicadas en este sitio web son a fines informativos y tienen un carácter orientativo, por lo que deben ser tomados únicamente a modo de referencia.
+                <br>
+                En ningún caso se debe interpretar o suponer una recomendación de compra o venta.
+            </p>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -110,6 +123,15 @@ UPDATES
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             actualizarCotizacion(); // Ejecuta la función automáticamente al cargar la página
+
+            // Prevenir el envío de formularios y comportamiento de actualización
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault(); // Previene el comportamiento por defecto
+                    }
+                });
+            });
         });
     </script>
 </body>
