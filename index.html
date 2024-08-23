@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <meta http-equiv="refresh" content="3"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="content-language" content="es">
+    <html lang="es">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#474f97">
+    <link rel="icon" href="img/ROBOT1.png">
+    <title>AhorroBot</title>
+
+    <meta name="description" content="¿Conviene pagar en cuotas? Es muy fácil saber la respuesta.">
+    <meta name="keywords" content="AhorroBot, ahorro, bot, cuotas, conviene, pagar, cuotasi, cuotano, intereses, inflacion">
+    <meta name="author" content="Lucas Mazalan">
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131242887-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-131242887-1');
+    </script>
+
+
+
+    <script type="text/javascript">
+        function compare(){
+            var monto = document.getElementById('montoTotal').value;
+            var cuotas = document.getElementById('cantCuotas').value;
+            var tasaVal = document.getElementById('inflacion').value;
+            var cuota = document.getElementById('montoCuota').value;
+
+            var montoTotal = parseInt(monto);
+            var cantCuotas = parseInt(cuotas);
+            var tasa = parseFloat(tasaVal)/100;
+            var montoCuota = parseInt(cuota);
+            
+            var flujo = montoCuota;
+
+            var tasaMasUno;
+            var cuentaTotal = 0;
+            tasaMasUno = 1+tasa;
+
+            // cuentaTotal = (flujo / Math.pow(tasaMasUno, cantCuotas));
+
+            for (var i = 1; i <= cantCuotas; i++) {
+                cuentaTotal += flujo/(Math.pow(tasaMasUno, i));
+            }
+            var resultado = montoTotal >= cuentaTotal;
+
+            // if ((montoTotal == 0) || (montoCuota == 0) ) {
+            //     alert("Oops! No llenaste todos los campos :(");
+            // } else {
+            //     alert("Es util? " + resultado + " resultado " +cuentaTotal);            
+            // }
+
+            // alert("Es util? " + resultado + " resultado " +cuentaTotal);
+            // console.log(flujo.value);
+            if(monto.length == 0 || cuotas.length == 0 || tasaVal.length == 0 || cuota.length == 0){
+                return false;
+            }
+            $('.costo').html(Number(Math.abs(montoTotal-cuentaTotal)).toFixed(2));
+
+            changeClass(resultado, montoTotal, cuentaTotal);
+
+            return true;
+        };
+
+        function changeClass(resultado, montoTotal, cuentaTotal) {
+            $("#arrow").css("display","block");
+            if (resultado) {
+                var x = document.getElementById("blueContent");
+                $(x).addClass('byeClass');
+
+                var y = document.getElementById("bgColor");
+                $(y).removeClass('blueBg');
+                $(y).addClass('greenBg');
+
+                var z = document.getElementById("greenContent");
+                $(z).removeClass('byeClassGreen');
+
+            } else {
+                var x = document.getElementById("blueContent");
+                $(x).addClass('byeClass');
+
+                var y = document.getElementById("bgColor");
+                $(y).removeClass('blueBg');
+                $(y).addClass('redBg');
+
+                var z = document.getElementById("redContent");
+                $(z).removeClass('byeClassRed');
+            }
+            
+            $('html,body').scrollTop(0);
+
+        }
+
+    </script>
+
+    <style type="text/css">
+        html, body {
+            overflow-x:hidden;
+        }
+        body {
+            position: relative
+        }
+        .byeClass {
+            display: none;
+        }
+        .byeClassGreen {
+            display: none;
+        }
+        .byeClassRed {
+            display: none;
+        }
+        .blueBg {
+            background-color: #6196FF;
+        }
+        .redBg {
+            background-color: #B75959;
+        }
+        .greenBg {
+            background-color: #6DA46E;
+        }
+    </style>
+   
+
+</head>
+<body id="bgColor" class="scrollspy blueBg">
+
+    <div class="navbar">
+        <a href="index.html"><span class="material-symbols-outlined">smart_toy</span></a>
+        <a href="dolar.html"><span class="material-symbols-outlined">paid</span>
+        <!-- <a href="messages.html"><i class="material-icons">chat</i></a> -->
+    </div>
+
+    
+    <div class="row" style="margin-bottom:0px;margin-top:15px;">
+        <div id="arrow" class="col s2 left" style="display:none" >
+            <a href="/"><img src="img/arrow.svg" width="100%" style="max-width: 50px; padding: 10px; "></a>
+        </div>
+        <div class="col s2 right">
+            <a href="mailto:hola@ahorrobot.com.ar?subject=Hola AhorroBot!"><img src="img/envelope.svg" width="100%" style="max-width: 50px; padding: 10px; margin-right: 20px; mar"></a>
+        </div>    
+    </div>
+    <div id="blueContent" class="container showhide" style="margin-top: -20px;">
+        <!-- logo + dialog -->
+        <div class="center">
+            <img src="img/ahorrobot-dialog.svg" width="100%" style="max-width: 500px;">               
+        </div>
+        <div class="container">
+            <form class="col s12">
+                <div class="input-field col s6">
+                    <span class="white-text">Monto total en un pago</span>
+                    <input style="background-color: white; border-radius: 10px; text-align:right;" placeholder="Ingresa el monto total en un pago " id="montoTotal" type="number" class="validate" style="text-align:right;" required>
+                </div>
+            </form>
+
+            <div class="section" style="border-style: solid; border-width: 1px; color: white; margin-bottom: 10px;">
+                <p class="center" style="font-weight: 500; font-size: 1.5em; padding-right: 5px; padding-left:  10px; margin: 0px">¡Solo tenés que preguntar el valor de la cuota!</p>
+            </div>
+
+            <form class="col s12">
+                <div class="row white-text">
+                    
+                    <div style="width: 100%">
+                        <div class="input-field col s6">
+                            <span class="white-text">Monto de cuota</span>
+                            <input style="background-color: white; border-radius: 10px; text-align:right;" placeholder="Costo de la cuota " id="montoCuota" type="number" class="validate"  required/>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <span class="white-text">Cuotas</span>
+                            <input style="background-color: white; border-radius: 10px; text-align:right;" placeholder="Cantidad de cuotas " id="cantCuotas" type="number" class="validate"  required/>
+                        </div>
+                    </div>
+
+                    <!-- INFLATION RATE NOT BEING DISPLAYED -->
+                    <div class="col s6 right" style="margin-right: -10px; display: none;">
+                        <span class="white-text">Inflación</span>
+                        <div class="input-field" style="background-color: white; border-radius: 10px;">
+                            <div style="width:90%">
+                                <input placeholder="7.4" value="7.4" id="inflacion" type="number" class="validate" style="text-align:right;"/>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="col s6 right" style="margin: 0px;">
+                        <p class="white-text" style="margin:0px;text-align:right;margin-right:7%">
+                            <span style="font-size: 1em;">Inflación 7,4% (*)</span>
+                            <br>
+                            <span style="opacity: 0.6; font-size: 0.8em;">mensual estimada</span>
+                            <br>
+                            <span style="opacity: 0.6; font-size: 0.8em;">actualizada 08/2022</span>
+                            <br>
+                            <span style="opacity: 0.6; font-size: 0.8em;"><a class="white-text" href="https://www.indec.gob.ar/uploads/informesdeprensa/ipc_08_222F36DA2F1A.pdf" target="_blank"><u>Fuente</u></a></span>
+                        </p>
+                    </div>
+                </div>
+                <!-- end row  -->
+            </form>
+            <div class="center" style="margin-top: 10px;">
+                <button class="btn-large z-depth-3 waves-effect waves-light" style="border-radius: 20px; background-color: #474f97; font-weight: 500; font-size: 1.5em;" onclick="compare()"><strong>CALCULAR</strong></button> 
+            </div>
+
+            <!-- Cafecito -->
+            <div class="center" style="margin-top: 25px;">
+                <a class="center" href='https://cafecito.app/lucasmazalan' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_3.png 1x, https://cdn.cafecito.app/imgs/buttons/button_3_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_3_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_3.png' alt='Invitame un café en cafecito.app' /></a>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <!-- TRUE GREEN -->
+    <div id="greenContent" class="container classGreen byeClassGreen">
+        <div class="row"></div>
+        <div class="center">
+            <img src="img/ahorrobot-green.svg" width="60%" style="max-width: 300px;">               
+        </div>
+        <div class="container white-text center">
+            <h2 style="font-size: 3em; font-weight: 700;">¡Cuota SÍ!</h2>
+            <p style="font-size: 2em; font-weight: 300;">El efecto de la inflación hace que te convenga pagar en cuotas!!</p>
+            <p class="white-text" style="font-size: 1.5em; font-weight: 300;">
+                Estarías ahorrando
+                <br>
+                <span style="font-size: 2em; font-weight: 500;">$</span><span class="costo" style="font-size: 2em; font-weight: 500;"></span>
+                <br>
+                producto de la inflación(*).
+            </p>
+
+            <!-- Cafecito -->
+            <a href='https://cafecito.app/lucasmazalan' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_3.png 1x, https://cdn.cafecito.app/imgs/buttons/button_3_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_3_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_3.png' alt='Invitame un café en cafecito.app' /></a>
+
+            <div class="container center" style="margin-top: 50px;">
+                <button type="button" class="btn-large z-depth-3 waves-effect waves-light share-btn hide-on-med-and-up" style="border-radius: 20px; background-color: #7c7c7c; font-weight: 500; font-size: 1.5em;">COMPARTIR</button> 
+            </div>
+            <!-- <button type="button" class="button small share-btn">Share me!</button> -->
+            
+        </div>
+    </div>
+
+
+    <!-- FALSE RED -->
+    <div id="redContent" class="container classRed byeClassRed">
+        <div class="row"></div>
+        <div class="center">
+            <img src="img/ahorrobot-red.svg" width="60%" style="max-width: 300px;">    
+        </div>
+        <div class="container white-text center">
+            <h2 style="font-size: 3em; font-weight: 700;">¡Cuota NO!</h2>
+            <p style="font-size: 2em; font-weight: 300;">El efecto de la inflación no es suficiente para que te convenga pagar en cuotas!!</p>
+            <p class="white-text" style="font-size: 1.5em; font-weight: 300;">
+                Pagarías un adicional equivalente a
+                <br>
+                <span style="font-size: 2em; font-weight: 500;">$</span><span class="costo" style="font-size: 2em; font-weight: 500;">$</span>
+                <br>
+                producto de la financiación (*).
+            </p>
+
+            <!-- Cafecito -->
+            <a href='https://cafecito.app/lucasmazalan' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_3.png 1x, https://cdn.cafecito.app/imgs/buttons/button_3_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_3_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_3.png' alt='Invitame un café en cafecito.app' /></a>
+
+            <div class="container center" style="margin-top: 50px;">
+                <button type="button" class="btn-large z-depth-3 waves-effect waves-light share-btn hide-on-med-and-up" style="border-radius: 20px; background-color: #7c7c7c; font-weight: 500; font-size: 1.5em;">COMPARTIR</button> 
+            </div>
+            <!-- <button type="button" class="button small share-btn">Share me!</button> -->
+            
+        </div>
+    </div>
+
+
+    <!-- DISCLAIMER -->
+    <div class="container" style="margin-top: 30px;">
+        <p class="white-text" align="justify">
+            (*) La inflación sugerida corresponde al promedio proyectado del Índice de Precios al Consumidor (IPC) a 6 meses publicado por Banco Central de la República Argentina (BCRA) en su último informe mensual del Relevamiento de Expectativas de Mercado (REM). 
+            <br>
+            Los meses subsiguientes son una proyección de ese mismo porcentaje.
+        </p>
+    </div>
+
+    
+
+
+        <!-- <div class="container hide-on-med-and-up" style="padding: 10%">    
+        </div> -->
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+
+        <script src="js/cuenta.js"></script>
+
+        <script type="text/javascript">
+            $('form').submit(function(e){
+                e.preventDefault();
+            })
+        </script>
+
+        <script type="text/javascript">
+            // share button
+            const shareBtn = document.querySelector('.share-btn');
+
+            shareBtn.addEventListener('click', () => {
+              if (navigator.share) {
+                navigator.share({
+                  title: 'AhorroBot.com.ar',
+                  text: 'AhorroBot es una app para calcular si te sirve o no comprar en cuotas, creo que te puede servir!',
+                  url: window.location.href
+                }).then(() => {
+                  console.log('Gracias por compartir!');
+                })
+                .catch(err => {
+                  console.log(`Oops, ocurrio un error`, err.message);
+                });
+              } else {
+                console.log('No se puede compartir, tu browser es incompatible :(');
+              }
+            });
+        </script>
+
+    </body>
+</html>

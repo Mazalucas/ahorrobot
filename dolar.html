@@ -1,0 +1,116 @@
+<!-- 
+UPDATES
+- Agregar texto arriba del conversor. "selecciona una cotización antes de hacer la conversión"
+- Al tocar uno de los bloques aparece sobre el perímetro de el unas lineas de selección. Podemos darle un mejor estilo? que se note más?
+- NavBar 
+- 
+
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dólar - AhorroBot</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body class="blueBg">
+    <div class="navbar">
+        <a href="index.html"><span class="material-symbols-outlined">smart_toy</span></a>
+        <a href="dolar.html"><span class="material-symbols-outlined">paid</span>
+        <!-- <a href="messages.html"><i class="material-icons">chat</i></a> -->
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2 class="center-align white-text">Blue / Oficial</h2>
+                <p class="center-align white-text">Monitoreo en tiempo real de las cotizaciones del dólar en Argentina.</p>
+            </div>
+        </div>
+
+        <!-- Dólar Oficial -->
+        <div class="row">
+            <div class="col s12">
+                <div class="tipo-cambio-titulo">Dólar Oficial</div>
+                <div class="cotizacion-container">
+                    <div class="cotizacion-promedio">
+                        <div class="cotizacion-titulo">Promedio</div>
+                        <div id="dolarOficialPromedio" class="cotizacion-selectable">Cargando...</div>
+                    </div>
+                    <div class="cotizacion-compra-venta">
+                        <div class="cotizacion-compra">
+                            <div class="cotizacion-titulo">Compra</div>
+                            <div id="dolarOficialCompra" class="cotizacion-selectable">Cargando...</div>
+                        </div>
+                        <div class="cotizacion-venta">
+                            <div class="cotizacion-titulo">Venta</div>
+                            <div id="dolarOficialVenta" class="cotizacion-selectable">Cargando...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dólar Blue -->
+        <div class="row">
+            <div class="col s12">
+                <div class="tipo-cambio-titulo">Dólar Blue</div>
+                <div class="cotizacion-container">
+                    <div class="cotizacion-promedio">
+                        <div class="cotizacion-titulo">Promedio</div>
+                        <div id="dolarBluePromedio" class="cotizacion-selectable">Cargando...</div>
+                    </div>
+                    <div class="cotizacion-compra-venta">
+                        <div class="cotizacion-compra">
+                            <div class="cotizacion-titulo">Compra</div>
+                            <div id="dolarBlueCompra" class="cotizacion-selectable">Cargando...</div>
+                        </div>
+                        <div class="cotizacion-venta">
+                            <div class="cotizacion-titulo">Venta</div>
+                            <div id="dolarBlueVenta" class="cotizacion-selectable">Cargando...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conversor de Monedas -->
+        <div class="row">
+            <div class="col s12">
+                <div class="swap-container">
+                    <div class="input-field">
+                        <input id="input-amount" type="text" class="validate">
+                        <label for="input-amount"><span id="currency-flag">🇺🇸 USD</span></label>
+                    </div>
+                    <div class="center-align">
+                        <a class="btn-floating btn-large waves-effect waves-light swap-button" onclick="swapCurrencies()">
+                            <i class="material-icons">sync</i>
+                        </a>
+                    </div>
+                    <div class="input-field">
+                        <input id="converted-amount" type="text" class="validate" placeholder="$0" readonly>
+                        <label for="converted-amount"><span id="result-flag">🇦🇷 ARS</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarCotizacion(); // Ejecuta la función automáticamente al cargar la página
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+.navbar {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #000;
+    font-size: 24px;
+    padding: 0 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #6196FF;
+}
+
+.navbar a .material-icons {
+    font-size: 30px;
+}
+
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+html, body {
+    overflow-x:hidden;
+}
+body {
+    position: relative;
+}
+.byeClass {
+    display: none;
+}
+.byeClassGreen {
+    display: none;
+}
+.byeClassRed {
+    display: none;
+}
+.blueBg {
+    background-color: #6196FF;
+}
+.redBg {
+    background-color: #B75959;
+}
+.greenBg {
+    background-color: #6DA46E;
+}
+
+.cotizacion-container {
+    display: flex;
+    align-items: stretch;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    min-height: 100px; /* Ajuste para que las barras tengan la misma altura */
+}
+
+.cotizacion-promedio, .cotizacion-compra, .cotizacion-venta {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.2em; /* Ajusta el tamaño del texto */
+    text-align: center;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    min-height: inherit; /* Asegura que los bloques hijos hereden la altura del contenedor */
+}
+
+.cotizacion-promedio {
+    background: linear-gradient(90deg, #A35FD9 0%, #3D92FE 100%);
+    color: white;
+}
+
+.cotizacion-compra-venta {
+    display: flex;
+    width: 100%;
+    background: white;
+    color: black;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+/* Estilo específico para desktop */
+@media (min-width: 768px) { /* Se aplica a pantallas de 768px o más */
+    .cotizacion-compra-venta {
+        width: 66.66%; /* Ocupa dos tercios del ancho en desktop */
+    }
+}
+
+.cotizacion-compra, .cotizacion-venta {
+    background: white;
+    color: black;
+    border-left: 1px solid #E0E0E0;
+}
+
+.cotizacion-compra {
+    border-right: 1px solid #E0E0E0;
+}
+
+.cotizacion-titulo {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-bottom: 5px;
+}
+
+.tipo-cambio-titulo {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .cotizacion-container {
+        flex-direction: column;
+    }
+    .cotizacion-promedio, .cotizacion-compra, .cotizacion-venta {
+        font-size: 1.2em;
+        padding: 8px;
+    }
+    .cotizacion-compra, .cotizacion-venta {
+        border-left: none;
+        border-right: none;
+    }
+
+    /* Cambio de estructura para dispositivos móviles */
+    .swap-container {
+        flex-direction: column;
+        align-items: center; /* Alinea los elementos al centro */
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .swap-button {
+        margin: 20px 0; /* Espacio superior e inferior al botón */
+        display: block;
+        align-self: center;
+    }
+
+    .input-field {
+        width: 100%; /* Ocupa el ancho completo */
+        margin-bottom: 20px;
+    }
+
+    .input-field input {
+        font-size: 2em; /* Aumenta el tamaño de los números */
+        text-align: center;
+        padding: 10px;
+        border: 2px solid #E0E0E0;
+        border-radius: 8px;
+        width: 100%;
+    }
+}
+
+.conversion-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.swap-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Cambiado para espaciar mejor los elementos */
+    margin-top: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Asegura que el contenedor tenga un ancho máximo */
+    margin-left: auto;
+    margin-right: auto; /* Centra el contenedor */
+}
+
+.swap-button {
+    background-color: #4a69bd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centra el botón dentro de su columna */
+}
+
+.input-field {
+    margin: 0 10px;
+}
+
+.input-field input {
+    font-size: 2em; /* Aumenta el tamaño de los números */
+    text-align: center;
+    padding: 10px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+}
