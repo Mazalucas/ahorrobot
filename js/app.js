@@ -91,6 +91,9 @@ function actualizarCotizacion() {
             document.getElementById('dolarBlueCompra').innerText = `Error al cargar`;
             document.getElementById('dolarBlueVenta').innerText = `Error al cargar`;
             document.getElementById('dolarBluePromedio').innerText = `Error al cargar`;
+
+            // Mostrar toast pidiendo refrescar la página
+            M.toast({html: 'Error al cargar las cotizaciones. Por favor, refresca la página.', classes: 'rounded'});
         });
 }
 
@@ -132,4 +135,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 5000);
 });
 
+document.querySelectorAll('.cotizacion-promedio, .cotizacion-compra, .cotizacion-venta').forEach(element => {
+    element.addEventListener('click', function() {
+        selectedCotizacion = parseFloat(this.querySelector('.cotizacion-selectable').textContent.replace('$', '').replace(',', '.'));
+        convertCurrency();
 
+        document.querySelectorAll('.cotizacion-promedio, .cotizacion-compra, .cotizacion-venta').forEach(el => {
+            el.style.border = 'none';
+        });
+        this.style.border = '2px solid #4a69bd';
+    });
+});
+
+function formatCurrency(value) {
+    return parseFloat(value).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).replace('$', '');
+}
+
+document.getElementById('converted-amount').addEventListener('input', function() {
+    formatCurrency(this);
+    convertCurrency();
+});
+
+function convertCurrency() {
+    const inputAmount = parseFloat(document.getElementById('input-amount').value.replace(',', '.'));
+    let convertedAmount;
+
+    if (selectedCotizacion) {
+        if (document.getElementById('currency-flag').innerHTML.includes('🇺🇸')) {
+            convertedAmount = inputAmount * selectedCotizacion;
+        } else {
+            convertedAmount = inputAmount / selectedCotizacion;
+        }
+
+        const formattedAmount = formatCurrency(convertedAmount);
+        const convertedAmountField = document.getElementById('converted-amount');
+        convertedAmountField.value = formattedAmount;
+        
+        convertedAmountField.classList.add('animated');
+        setTimeout(() => convertedAmountField.classList.remove('animated'), 300);
+    }
+}
+
+document.getElementById('input-amount').addEventListener('input', function() {
+    if (!selectedCotizacion) {
+        M.toast({html: 'Elegí una cotización de arriba'});
+        this.value = ''; // Limpia el campo de entrada
+    } else {
+        convertCurrency();
+    }
+});

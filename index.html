@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <meta http-equiv="refresh" content="3"> -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="content-language" content="es">
     <html lang="es">
@@ -9,8 +8,7 @@
     <meta name="theme-color" content="#474f97">
     <link rel="icon" href="img/ROBOT1.png">
     <title>AhorroBot</title>
-
-    <meta name="description" content="¿Conviene pagar en cuotas? Es muy fácil saber la respuesta.">
+    <meta name="description" content="Ahorrobot la suite de herramientas financieras para los ciudadanos argentinos. ¿Conviene pagar en cuotas? Es muy fácil saber la respuesta.">
     <meta name="keywords" content="AhorroBot, ahorro, bot, cuotas, conviene, pagar, cuotasi, cuotano, intereses, inflacion">
     <meta name="author" content="Lucas Mazalan">
 
@@ -153,6 +151,9 @@
         <a href="#contactModal" class="tooltipped modal-trigger" data-position="bottom" data-tooltip="Contacto">
             <span class="material-symbols-outlined">mail</span>
         </a>
+        <a href="https://cafecito.app/lucasmazalan" target="_blank" class="tooltipped" data-position="bottom" data-tooltip="Cafecito">
+            <span class="material-symbols-outlined">coffee</span>
+        </a>
     </div>
 
 
@@ -234,27 +235,31 @@
     </div>
 
     <!-- Estructura del modal de contacto -->
-    <div id="contactModal" class="modal">
+    <div id="contactModal" class="modal" style="border-radius: 25px;">
+        <div class="modal-header" style="background-color: #6196FF; padding: 20px; border-radius: 25px 25px 0 0;">
+            <h4 style="color: white; margin: 0;">Contacto</h4>
+        </div>
         <div class="modal-content">
-            <h4>Contacto</h4>
-            <form id="contactForm">
-                <div class="input-field">
-                    <input id="name" type="text" name="from_name" class="validate" required>
-                    <label for="name">Nombre</label>
+            <form id="contactForm" class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text" style="text-align:left;" name="from_name" class="validate" required>
+                        <label for="name">Nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="email" type="email" style="text-align:left;" name="reply_to" class="validate" required>
+                        <label for="email">Email</label>
+                    </div>
                 </div>
                 <div class="input-field">
-                    <input id="email" type="email" name="reply_to" class="validate" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="input-field">
-                    <input id="subject" type="text" name="subject" class="validate" required>
+                    <input id="subject" type="text" style="text-align:left;" name="subject" class="validate" required>
                     <label for="subject">Asunto</label>
                 </div>
                 <div class="input-field">
-                    <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+                    <textarea id="message" name="message" style="text-align:left;" class="materialize-textarea" required></textarea>
                     <label for="message">Mensaje</label>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+                <button class="btn waves-effect waves-light blueBg" type="submit" name="action">Enviar
                     <i class="material-icons right">send</i>
                 </button>
             </form>
@@ -285,7 +290,7 @@
             <div class="container center" style="margin-top: 50px;">
                 <button type="button" class="btn-large z-depth-3 waves-effect waves-light share-btn hide-on-med-and-up" style="border-radius: 20px; background-color: #7c7c7c; font-weight: 500; font-size: 1.5em;">COMPARTIR</button> 
             </div>
-            <!-- <button type="button" class="button small share-btn">Share me!</button> -->
+            
             
         </div>
     </div>
